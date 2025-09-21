@@ -3,8 +3,7 @@ import time
 import csv
 from datetime import datetime, UTC
 
-# Replace with your Graph API key
-API_KEY = "168ce640c99b820e2d260cd1b8e8be2f"
+API_KEY = ""
 SUBGRAPH_ID = "5zvR82QoaXYFyDEKLZ9t6v9adgnptxYpKpSbxtgVENFV"
 GRAPH_API = f"https://gateway.thegraph.com/api/{API_KEY}/subgraphs/id/{SUBGRAPH_ID}"
 
@@ -46,10 +45,9 @@ def fetch_swaps_between(start_ts, end_ts, batch_size=1000):
 
 def main():
     now = int(time.time())
-    thirty_days_ago = now - 30 * 24 * 60 * 60   # 30 days back
+    thirty_days_ago = now - 30 * 24 * 60 * 60
     filename = "swaps_last30days21.csv"
 
-    # CSV header
     with open(filename, "w", newline="", encoding="utf-8", errors="replace") as f:
         writer = csv.writer(f)
         writer.writerow([
@@ -62,7 +60,6 @@ def main():
             "sqrtPriceX96", "tick", "logIndex"
         ])
 
-    # Pull data in 6h windows
     window_seconds = 3600 * 6
     start = thirty_days_ago
 

@@ -39,11 +39,10 @@ def main():
 
     for coin in COINS:
         print(f"Fetching data for {coin}...")
-        # Get hourly data for last 90 days
         df = fetch_market_data(coin, days="90")
         if df is not None:
             all_data.append(df)
-        time.sleep(2)  # respect API limits
+        time.sleep(2)
 
     if all_data:
         final_df = pd.concat(all_data, ignore_index=True)
